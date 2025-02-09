@@ -1,16 +1,17 @@
 package ru.nelology.service;
 
 public class PosterManager {
-    private int movie;
+    private String[] movies;
+    private int limit;
 
-    public PosterManager(int movie) {
-        this.movie = movie;
+    public PosterManager(int limit) {
+        this.limit = limit;
+        this.movies = new String[0];
     }
 
-    private PosterManager[] movies = new PosterManager[0];
 
-    public void add(PosterManager movie) {
-        PosterManager[] tmp = new PosterManager[movies.length + 1];
+    public void addMovie(String movie) {
+        String[] tmp = new String[movies.length + 1];
         for (int i = 0; i < movies.length; i++) {
             tmp[i] = movies[i];
         }
@@ -18,24 +19,35 @@ public class PosterManager {
         movies = tmp;
     }
 
-    public PosterManager[] findAll() {
+    public String[] findAll() {
 
         return movies;
     }
 
-    public PosterManager[] findLast() {
-        int resultLength;
-        if (movies.length >= movie) {
-            resultLength = movie;
-        } else {
-            resultLength = movies.length;
-        }
+    public String[] findLast() {
+        int resultLength = Math.min(limit, movies.length);
+        String[] result = new String[resultLength];
 
-        PosterManager[] result = new PosterManager[resultLength];
         for (int i = 0; i < resultLength; i++) {
             result[i] = movies[movies.length - 1 - i];
         }
-        return result;
+
+        return result; // Возвращаем массив с фильмами
     }
+
+//    public String[] findLast() {
+//        int resultLength;
+//        if (movies.length < limit) {
+//            resultLength = movies.length;
+//        } else {
+//            resultLength = limit;
+//        }
+//
+//        String[] tmp = new String[resultLength];
+//        for (int i = 0; i < tmp.length; i++) {
+//            tmp[i] = movies[movies.length - 1 - i];
+//        }
+//        return tmp;
+//    }
 }
 
