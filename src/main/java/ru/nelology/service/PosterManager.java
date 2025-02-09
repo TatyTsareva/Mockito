@@ -6,6 +6,7 @@ public class PosterManager {
     public PosterManager(int movie) {
         this.movie = movie;
     }
+
     private PosterManager[] movies = new PosterManager[0];
 
     public void add(PosterManager movie) {
@@ -16,13 +17,15 @@ public class PosterManager {
         tmp[tmp.length - 1] = movie;
         movies = tmp;
     }
+
     public PosterManager[] findAll() {
 
         return movies;
     }
+
     public PosterManager[] findLast() {
         int resultLength;
-        if (movies.length >= movie)   {
+        if (movies.length >= movie) {
             resultLength = movie;
         } else {
             resultLength = movies.length;
